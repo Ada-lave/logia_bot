@@ -45,9 +45,6 @@ async def generate_image(message: Message):
     await message.answer(attachment=photo)
     await menu(message)
 
-for label in labelers:
-    bot.labeler.load(label)
-
 @bot.on.message(text=["Помощь","помощь","помощ","помошь","помош","помошщ","помошц","помошш","помошщь","помошшь","Помошь",'Help','help'])
 async def help(message: Message):
         help_text = "1. Что бы вновь начать диалог с ботом необходимо заново Прописать команду Начать.\n\n2. Если у вас возникли какие либо предложения по улучшению или идеи пишите в лс администратору.\n\n3. Незабывайте соблюдать соглашение об использовании бота."
