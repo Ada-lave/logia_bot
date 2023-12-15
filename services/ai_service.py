@@ -75,16 +75,24 @@ class AI:
             attempts -= 1
             time.sleep(delay)
 
+async def async_decode(img):
+    img_byte = base64.b64decode(img)
+    return img_byte
 
+async def img_save(img_byte, path):
+    img = Image.open(BytesIO(img_byte))
+    img.save(path)
+    
 
 async def save_image(path, promt):
     ai = AI()
     model_id = await ai.get_model()
     resp_id = await ai.generate(promt, model_id)
     img_byte = await ai.check_generation(resp_id)
-    img_byte = base64.b64decode(img_byte[0])
-    img = Image.open(BytesIO(img_byte))
-    img.save(path)
+    img_byte =  await async_decode(img_byte[0])
+    await img_save(img_byte, path)
+    
+    return path
     
 
 
