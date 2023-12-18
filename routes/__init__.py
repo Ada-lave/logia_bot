@@ -1,4 +1,3 @@
-from . import help
+from . import help_tools
 
-
-labelers = [help.bl]
+labelers = [help_tools.bl]

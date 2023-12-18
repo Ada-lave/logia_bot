@@ -16,6 +16,9 @@ bot = Bot(
     state_dispenser=state_dispenser
 )
 
+for label in labelers:
+    bot.labeler.load(label)
+
 photo_upld = PhotoMessageUploader(bot.api)
 
 
@@ -55,6 +58,7 @@ async def help(message: Message):
             .add(OpenLink("https://vk.com/topic-188992540_50173854", "Соглашение"))
             .row()
             .add(Text("Начать"), color=KeyboardButtonColor.POSITIVE)
+            .add(Text("Сервисы"), color=KeyboardButtonColor.POSITIVE)
         )
         
         await message.answer(help_text, keyboard=KEYBOARD)
@@ -67,4 +71,5 @@ async def undef_message(message: Message):
         .add(Text("Помощь"))
     )
     await message.answer("Не понял что вы хотели, возможно вы хотели начать или вызвать меню помощи?", keyboard=KEYBOARD)
+    
 bot.run_forever()
